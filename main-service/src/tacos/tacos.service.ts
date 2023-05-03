@@ -4,16 +4,13 @@ import { TACOS_PROVIDER } from '../../providers';
 
 @Injectable()
 export class TacosService {
-  constructor(@Inject(TACOS_PROVIDER) private readonly client: ClientProxy) {}
+  constructor(@Inject(TACOS_PROVIDER) private client: ClientProxy) {}
 
   async getTacos(): Promise<string> {
-    const cmd = 'getTacos';
-    return cmd;
+    const pattern = { cmd: 'getTacos' };
 
     try {
-      const pattern = { cmd };
-      const payload = {};
-      return await this.client.send<string>(pattern, payload).toPromise();
+      return await this.client.send(pattern, {}).toPromise();
     } catch (e) {
       console.log(e);
     }
