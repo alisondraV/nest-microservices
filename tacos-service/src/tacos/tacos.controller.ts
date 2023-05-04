@@ -6,7 +6,7 @@ import { MessagePattern } from '@nestjs/microservices';
 export class TacosController {
   constructor(private readonly tacosService: TacosService) {}
 
-  @MessagePattern('getTacos')
+  @MessagePattern({ cmd: 'getTacos' })
   getTacos(): string {
     return this.tacosService.getTacos();
   }
