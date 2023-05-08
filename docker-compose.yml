@@ -6,3 +6,15 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+
+  main-service:
+    build: ./main-service
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rabbitmq
+
+  tacos-service:
+    build: ./tacos-service
+    depends_on:
+      - rabbitmq
